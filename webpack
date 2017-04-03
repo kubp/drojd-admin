@@ -1,0 +1,45 @@
+var webpack = require('webpack');
+
+module.exports = {
+   devtool: 'inline-source-map',
+  //devtool: 'source-map',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/client/entry',
+  ],
+  output: {
+    path: __dirname + '/public/js/',
+    filename: 'app.js',
+    publicPath: 'http://localhost:8080/js/',
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.optimize.UglifyJsPlugin()
+  ],
+  resolve: {
+    extensions: ['', '.js']
+  },
+  module: {
+    loaders: [
+      { test: /\.jsx?$/, loaders: ['react-hot', 'babel-loader?experimental'], exclude: /node_modules/ }
+    ]
+  }
+}
+
+
+componentWillReceiveProps(){
+/*axios.get('https://api.github.com/')
+  .then(function (response) {
+    console.log(response.data.authorizations_url);
+     this.setState({test:"Zildjian"})
+  }.bind(this))
+   
+}
+  */
+
+}
+
+// componentDidMount(){
